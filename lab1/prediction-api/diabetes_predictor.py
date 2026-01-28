@@ -19,8 +19,8 @@ class DiabetesPredictor:
         client = storage.Client(project=project_id)
         bucket = client.get_bucket(model_repo)
         blob = bucket.blob(model_name)
-        blob.download_to_filename('local_model.h5')
-        self.model = load_model('local_model.h5')
+        blob.download_to_filename('local_model.keras')
+        self.model = load_model('local_model.keras')
         return jsonify({'message': " the model was downloaded"}), 200
 
     def predict_single_record(self, prediction_input):

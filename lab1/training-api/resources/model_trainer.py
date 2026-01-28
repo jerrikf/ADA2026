@@ -34,7 +34,7 @@ def train(dataset):
     logging.info(text_out)
 
     model_path = os.path.join('/tmp', model_name)
-    model.save(model_path, save_format='h5')
+    model.save(model_path)
     # Save to GCS
     client = storage.Client(project=project_id)
     bucket = client.get_bucket(model_repo)
