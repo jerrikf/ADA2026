@@ -16,7 +16,7 @@ spec:
         app: prediction-ui
     spec:
       containers:
-      - image: us-central1-docker.pkg.dev/YOUR_PROJECT_ID/labrepo/prediction-ui:0.0.1 # Docker image name, that we pushed to GCR - use your project id, location, and repository
+      - image: us-central1-docker.pkg.dev/data-engineering-471813/labrepo/prediction-ui:0.0.1 # Docker image name, that we pushed to GCR - use your project id, location, and repository
         name: prediction-ui
         imagePullPolicy: Always
         ports:

@@ -4,9 +4,9 @@ metadata:
   name: prediction-api-service
   namespace: myapps
 spec:
-  type: LoadBalancer
+  type: LoadBalancer 
   ports:
   - port: 5001
     targetPort: 5000
   selector:
-    app: prediction-api
+    app: prediction-api #same as label in spec of deployment
