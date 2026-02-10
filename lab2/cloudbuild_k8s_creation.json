@@ -1,0 +1,57 @@
+{
+  "steps": [
+    {
+      "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+      "entrypoint": "gcloud",
+      "args": [
+        "container",
+        "clusters",
+        "create",
+        "$_CLUSTER_NAME",
+        "--project",
+        "$PROJECT_ID",
+        "--region",
+        "us-central1",
+        "--tier",
+        "standard",
+        "--no-enable-basic-auth",
+        "--cluster-version",
+        "1.33.5-gke.2118001",
+        "--release-channel",
+        "regular",
+        "--machine-type",
+        "e2-medium",
+        "--image-type",
+        "COS_CONTAINERD",
+        "--disk-type",
+        "pd-balanced",
+        "--disk-size",
+        "50",
+        "--scopes",
+        "https://www.googleapis.com/auth/cloud-platform",
+        "--num-nodes",
+        "1",
+        "--enable-ip-alias",
+        "--enable-ip-access",
+        "--addons",
+        "HorizontalPodAutoscaling,HttpLoadBalancing,GcePersistentDiskCsiDriver"
+      ],
+      "id": "cluster-creation"
+    },
+    {
+      "name": "gcr.io/google.com/cloudsdktool/cloud-sdk",
+      "entrypoint": "/bin/sh",
+      "args": [
+        "-c",
+        "kubectl label --overwrite node $(kubectl get nodes | grep -m1 gke- | tail -1 | awk '{print $1}') target=llm_api && kubectl label --overwrite node $(kubectl get nodes | grep -m2 gke- | tail -1 | awk '{print $1}') target=ui"
+      ],
+      "waitFor": [
+        "cluster-creation"
+      ],
+      "id": "node-labeling"
+    }
+  ],
+  "options": {
+    "logging": "CLOUD_LOGGING_ONLY"
+  }
+}
