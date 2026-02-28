@@ -17,7 +17,7 @@ class DeliveryDAO(Base):
     status_id = Column(Integer, ForeignKey('status.id'))
     # https: // docs.sqlalchemy.org / en / 14 / orm / basic_relationships.html
     # https: // docs.sqlalchemy.org / en / 14 / orm / backref.html
-    status = relationship(StatusDAO.__name__, backref=backref("delivery", uselist=False))
+    status = relationship(StatusDAO.__name__, backref=backref("delivery", uselist=False, cascade="all, delete"))
 
     def __init__(self, customer_id, provider_id, package_id, order_time, delivery_time, status):
         self.customer_id = customer_id
