@@ -34,7 +34,7 @@ class TestDeliveryDBOP:
         print(len(deliveries))
         for delivery in deliveries:
             print(
-                f'{delivery.id} was created by {delivery.customer_id}. Its current status is {delivery.status.status}')
+                f'{delivery.id} was created by {delivery.customer_id}. Its current status is {delivery.status.status_name}')
         print('')
         assert deliveries is not None
         session.close()

@@ -20,8 +20,8 @@ class TestDeliveryDBOP:
     # your setup code goes here, executed ahead of first test
     def test_add_query_record(self):
         session = Session()
-        status_1 = StatusDAO(STATUS_CREATED, datetime.datetime.now())
-        delivery_1 = DeliveryDAO("cus_1", "thaifood", "pack1", datetime.datetime.now(),
+        status_1 = StatusDAO(1, STATUS_CREATED, datetime.datetime.now())
+        delivery_1 = DeliveryDAO(1, "cus_1", "thaifood", "pack1", datetime.datetime.now(),
                                  datetime.datetime(2021, 3, 17, 23, 45),
                                  status_1)
         session.add(status_1)
@@ -34,7 +34,7 @@ class TestDeliveryDBOP:
         print(len(deliveries))
         for delivery in deliveries:
             print(
-                f'{delivery.id} was created by {delivery.customer_id}. Its current status is {delivery.status.status}')
+                f'{delivery.id} was created by {delivery.customer_id}. Its current status is {delivery.status.status_name}')
         print('')
         assert deliveries is not None
         session.close()
