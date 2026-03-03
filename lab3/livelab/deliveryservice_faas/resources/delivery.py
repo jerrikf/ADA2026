@@ -57,10 +57,14 @@ class Delivery:
     @staticmethod
     def delete(d_id):
         session = Session()
-        effected_rows = session.query(DeliveryDAO).filter(DeliveryDAO.id == int(d_id)).delete()
-        session.commit()
-        session.close()
-        if effected_rows == 0:
-            return jsonify({'message': f'There is no delivery with id {d_id}'}), 404
-        else:
+        delivery = session.query(DeliveryDAO).filter(DeliveryDAO.id == int(d_id)).first()
+
+        if delivery:
+            session.delete(delivery.status)
+            session.delete(delivery)
+            session.commit()
+            session.close()
             return jsonify({'message': 'The delivery was removed'}), 200
+        else:
+            session.close()
+            return jsonify({'message': f'There is no delivery with id {d_id}'}), 404

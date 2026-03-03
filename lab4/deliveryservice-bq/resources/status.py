@@ -1,6 +1,7 @@
 import datetime
 
-from flask import jsonify
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 
 from daos.delivery_dao import DeliveryDAO
 from db import Session
@@ -15,4 +16,5 @@ class Status:
         delivery.status.last_update = datetime.datetime.now()
         session.commit()
         session.close()
-        return jsonify({'message': 'The delivery status was updated'}), 200
+        return JSONResponse(content=jsonable_encoder({'message': 'The delivery status was updated'}),
+                            status_code=200)
