@@ -90,7 +90,7 @@ def get_config() -> dict:
 @mcp.resource("greetings://{name}")
 def personalized_greeting(name: str) -> str:
     """Generates a personalized greeting for the given name."""
-    return f"Hello, {name}! Welcome to the MCP server."
+    return f"Hello, {name}! Welcome to the weather MCP server."
 
 # Basic prompt returning a string
 @mcp.prompt
