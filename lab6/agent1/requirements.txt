@@ -1,0 +1,7 @@
+google-adk
+python-dotenv
+pytz
+tzdata
+fastapi
+uvicorn
+sqlalchemy

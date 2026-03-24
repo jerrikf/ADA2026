@@ -1,0 +1,8 @@
+fastapi
+fastmcp
+fastapi-mcp
+python-dotenv
+uvicorn
+sqlalchemy
+sqlalchemy-utils
+pytest
