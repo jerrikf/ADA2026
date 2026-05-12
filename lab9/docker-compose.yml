@@ -1,0 +1,15 @@
+services:  
+  userservice:
+    build:
+      context: ./userservice
+    container_name: userservicect
+    ports:
+      - "5000:5000"
+  securedeliveryservice:
+    build:
+      context: ./secure_deliveryservice
+    container_name: securedeliveryservicect
+    environment:
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "5001:5000"

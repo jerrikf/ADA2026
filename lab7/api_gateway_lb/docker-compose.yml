@@ -1,0 +1,30 @@
+services:
+  apigateway:
+    image: krakend:2.13.3
+    container_name: apigateway
+    volumes:
+      - ./krakend:/etc/krakend/
+    depends_on:
+      - inventoryservice1
+      - inventoryservice2
+      - orderrecordservice
+    ports:
+      - "8080:8081"
+  inventoryservice1:
+    build:
+      context: ./../../lab5/inventoryservice
+    container_name: inventoryservice1
+    ports:
+      - "5000:5000"
+  inventoryservice2:
+    build:
+      context: ./../../lab5/inventoryservice
+    container_name: inventoryservice2
+    ports:
+      - "5002:5000"
+  orderrecordservice:
+    build:
+      context: ./../../lab5/orderrecordservice
+    container_name: orderrecordservice
+    ports:
+      - "5001:5000"

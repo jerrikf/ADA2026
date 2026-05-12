@@ -1,0 +1,19 @@
+services:  
+  deliverymcpserver:
+    build:
+      context: ./../../lab6/deliveryservice_mcpserver
+    container_name: deliverymcpserver
+    ports:
+      - "5000:5000"
+  inventorymcpserver:
+    build:
+      context: ./../inventory_mcp_server
+    container_name: inventorymcpserver
+    ports:
+      - "5001:5001"
+  orderrecordmcpserver:
+    build:
+      context: ./../orderrecord_mcp_server
+    container_name: orderrecordmcpserver
+    ports:
+      - "5002:5002"

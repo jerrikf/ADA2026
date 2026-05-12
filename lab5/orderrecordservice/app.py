@@ -1,9 +1,10 @@
 from flask import Flask, request
 from flask import make_response
+
 from resources.order import Order, Orders
+from utils.printheaders import LoggingMiddleware
 
 app = Flask(__name__)
-
 orders = Orders()
 placeRecord = Order()
 
@@ -30,4 +31,6 @@ def create_order():
     return orders.post(request)
 
 
-app.run(host='0.0.0.0', port=5000, debug=True)
+if __name__ == "__main__":
+    # app.wsgi_app = LoggingMiddleware(app.wsgi_app)
+    app.run(host='0.0.0.0', port=5000, debug=True)
